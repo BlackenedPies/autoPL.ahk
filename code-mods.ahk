@@ -15,11 +15,9 @@ return
 
 ^capslock::capslock
 !capslock::end
-
 +capslock::
 send ^{left}
 return
-
 CapsLock::
 send ^{right}
 return
