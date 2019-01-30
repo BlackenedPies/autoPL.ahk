@@ -13,10 +13,10 @@ return
 exitapp
 return
 
-+capslock::capslock
+^capslock::capslock
 !capslock::end
 
-^capslock::
++capslock::
 send ^{left}
 return
 
