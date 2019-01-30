@@ -14,8 +14,11 @@ exitapp
 return
 
 +capslock::capslock
-^capslock::capslock
-!capslock::right
+!capslock::end
+
+^capslock::
+send ^{left}
+return
 
 CapsLock::
 send ^{right}
