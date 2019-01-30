@@ -22,6 +22,7 @@ send ^{right}
 return
 
 /*
+;credit to SpaceCadetShift - https://github.com/Wegerich/SpaceCadetShift/blob/master/SpaceCadetShift.ahk
 ~RShift::
 ~LShift::
 	;Configuration
@@ -66,13 +67,12 @@ Return
 Return
 */
 
+;credit to SpaceCadetShift - https://github.com/Wegerich/SpaceCadetShift/blob/master/SpaceCadetShift.ahk
 ~RControl::
 ~LControl::
 	;Configuration
 	AcceptableMouseMovementPixels := 30 ;Normally around 30. Set to 10000 to disable mouse checking. Can be set very low because mouse should barely move while typing.
 	LongestAcceptableControltTapTime := 1500 ;Normally around 1500. Set to 10000 to type bracket no matter how long shift is held
-	
-	
 	;Mouse clicks are ignored by A_PriorKey when shift is pressed
 	;Therefore an alternative method must be used to detect shift-click select as no "keys" are pressed
 	;This will be done by checking mouse position before and after {Shift Up} to see if something might be highlighted
@@ -87,8 +87,6 @@ Return
 	MousePosChangeOverall := xPosChange + yPosChange
 	;Tooltip %MousePosChangeOverall%
 	;Sleep 100	
-	
-
 	
 	If ( A_TimeSincePriorHotkey < LongestAcceptableControlTapTime and InStr(A_PriorKey,"Control") and MousePosChangeOverall < AcceptableMouseMovementPixels  )
 		   SendRaw, % InStr(A_ThisHotkey,"LControl") ? "{" : "}" 
