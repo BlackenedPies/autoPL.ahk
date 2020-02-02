@@ -112,7 +112,7 @@ return
 readtemp2: ;this doesn't run CPU-Z and just reads the last value
 filereadline, lineout, C:\Program Files\CPUID\CPU-Z\myreport.txt, linenum
 RegExMatch(lineout, ".. degC", regmat)
-regout := regexreplace(regmat,"( degC)", "")
+global regout := regexreplace(regmat,"( degC)", "")
 return
 
 plfunc(){ ;xtucli
