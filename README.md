@@ -2,7 +2,7 @@
 
 Hello,
 
-I have a script which automatically sets power limits based on the CPU package temperature and am looking for feedback to improve it
+I wrote an AHK script which automatically sets power limits based on the CPU package temperature and am looking for feedback to improve it
 
 **Purpose:**
 
@@ -14,7 +14,7 @@ The two relevant power limits are PL1 and PL2, where PL2 is an additional boost 
 
 **Requirements:**
 
-It works on devices compatible with XTU-CLI such as the Pocket 2 or Win 2. This includes the majority of Intel devices, but some newer laptops, like my Latitude 7490, [need an extra step](https://jas-team.net/2019/07/30/intel-xtu-attempted-to-install-on-an-unsupported-platform/) to install xtucli. It will NOT work on the MicroPC, and certain devices like my Thinkpad X260 and P51 automatically set PL1 and it won't work correctly. On some devices, you'll need to disable SpeedShift in BIOS as this also automatically sets PLs
+It works on devices compatible with XTU-CLI such as the Pocket 2 or Win 2. This includes the majority of Intel devices, but some newer laptops, like my Latitude 7490, [need an extra step](https://jas-team.net/2019/07/30/intel-xtu-attempted-to-install-on-an-unsupported-platform/) to install xtucli. It will NOT work on the MicroPC, and certain devices like my Thinkpad X260 and P51 automatically set PL1, and xtucli doesn't work correctly. On some devices, you'll need to disable SpeedShift in BIOS as this also automatically sets PLs
 
 1. AutoHotkey - installing AHK will let you run the script and compile to .exe if you want. You can edit it in any text editor - my preference is VSCode
 2. XTU CLI. The latest versions of XTU don't have xtucli.exe. I use XTU version 6.4.1.25
@@ -24,9 +24,9 @@ It works on devices compatible with XTU-CLI such as the Pocket 2 or Win 2. This 
 
 Every 30 seconds: 
 
-1. CPU-Z is polled and the current package temperature is read after five seconds. If the temp is above 75°, skip to step 2. Otherwise, poll CPU-Z again, wait, and read the temp. Average the two temps with the previous sampled temp (from the last loop)
-2. if the absolute differece between the current average and previous average is less than five, skip to step 3. Otherwise, compare the temp in 5 degree increments to rules such as at 50° set PL1 at 7 and PL2 at 10 (for Pocket 2), or 4.5 and 5 at 80°. If it reaches 80, display a tooltip (message above the cursor)
-3. if the absolute difference was less than five, don't set a new power limit and increment the temp by 1 and save it as the old temp. Either way, wait for the 30 second timer and then repeat from 1.
+1. CPU-Z is polled and the current package temperature is read after five seconds. If the temp is above 75°, skip to step 2. Otherwise, poll CPU-Z again, wait, and read the temp. Average the two temps with the previously sampled temp (from the last loop)
+2. if the absolute difference between the current average and previous average is less than five, skip to step 3. Otherwise, compare the temp in 5-degree increments to rules such as at 50° set PL1 at 7 and PL2 at 10 (for Pocket 2), or 4.5 and 5 at 80°. If it reaches 80, display a tooltip (message above the cursor)
+3. if the absolute difference was less than five, don't set a new power limit and increment the temp by 1 and save it as the old temp. Either way, wait for the 30-second timer and then repeat from 1.
 
 **Usage:**
 
@@ -42,7 +42,7 @@ I start this on a timer after running initial XTU settings including undervolts.
 
 **Limitations:**
 
-CPU-Z uses up to 5% CPU usage for almost two seconds when it's polled on my m3-8100Y, and XTU uses around 3% for one second. By my measurements, this incrases average CPU usage by less than 0.9%, but you could set the priorities of CPU-Z and XTU as always 'Idle' with an app like ProcessLasso if you really need CPU performance (or just increase the timers)
+CPU-Z uses up to 5% CPU usage for almost two seconds when it's polled on my m3-8100Y, and XTU uses around 3% for one second. By my measurements, this increases average CPU usage by less than 0.9%, but you could set the priorities of CPU-Z and XTU as always 'Idle' with an app like ProcessLasso if you really need CPU performance (or just increase the timers)
 
 There are alternative, better methods of sampling temperature, but I tried HWiNFO, HWMonitor, OpenHWM, and SpeedFan and didn't like each for various reasons. Using a tool like SpeedFan would work and allow higher-resolution sampling, but it constantly writes to the log every three seconds with no ability to change it and creates new logs every day. I'm still looking for a better solution if you have suggestions
 
@@ -50,4 +50,6 @@ The 5-degree increments that the script is comparing is not a great solution, an
 
 **Thanks for reading!**
 
-You can find the script below. Please read it before running!
+You can find the script below
+
+https://github.com/BlackenedPies/autoPL.ahk/blob/master/autoPL.ahk
