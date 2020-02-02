@@ -1,11 +1,10 @@
-### Automated Power Limit Script - Feedback
 Hello,
 
 I wrote an AHK script that automatically sets power limits based on the CPU package temperature and am looking for feedback to improve it
 
 **Info:**
 
-A power limit is the max power that the package (CPU+GPU) is allowed to pull. Higher power limits increase performance but affect power draw (battery life) and temperatures of nearby components like the battery and motherboard's power delivery system. CPU temperature itslef is rarely a concern as it typically takes years to degrade a stock CPU with heat, but devices with small VRMs and poor batteries will see a reduced life span from high temps in certain cases
+A power limit is the max power that the package (CPU+GPU) is allowed to pull. Higher power limits increase max performance but affect power draw (battery life) and the temperatures of nearby components like the battery and motherboard's power delivery system. CPU temperature itself is rarely a concern as it typically takes years to degrade a stock CPU with heat, but devices with small VRMs and poor batteries will see a reduced life span from high temps in certain cases. I specifically wrote this for an m3-8100Y GPD Pocket 2 (7" mini-laptop), which gets hot and users frequently report power and battery issues, and an m7-6Y75 Dell Latitude 7370 (13" fanless laptop), which has very low stock power limits (4.5W PL1) that can be tuned much higher (I usually run at around 7W PL)
 
 Tuning power limits is most relevant on ~7W Y-series devices as they are typically heavily power-limited rather than clock-limited (their clock speeds are relatively very high). Most dual-core ~15W i5s max out at around 15W and i7s at 18W during 'normal use', which is within most device's PL1 of 15W and PL2 of 25W, so it makes less difference for performance. The newer quad-core ~15W i5s can easily pull 25W, so it's more noticeable on them, and 35+W devices are similarly either clock or power limited based on the model. Power-limit performance scaling is generally non-linear, so you can throttle the power in return for better battery life
 
@@ -13,7 +12,7 @@ The two relevant power limits are PL1 and PL2, where PL2 is an additional boost 
 
 **Requirements:**
 
-It works on everything compatible with XTU-CLI. This includes the majority of Intel devices, but some newer laptops, like my Latitude 7490, [need an extra step](https://jas-team.net/2019/07/30/intel-xtu-attempted-to-install-on-an-unsupported-platform/) to install xtucli. It will NOT work on newer SoC µarch devices (Celeron N4100 etc.), and certain devices like my Thinkpad X260 and P51 automatically set PL1 so xtucli doesn't work correctly. On some devices, you'll need to disable SpeedShift in BIOS as this also automatically sets PLs
+It works on everything compatible with XTU-CLI. This includes the majority of Intel devices, but some newer laptops, like my Latitude 7490, [need an extra step](https://jas-team.net/2019/07/30/intel-xtu-attempted-to-install-on-an-unsupported-platform/) to install xtucli. It will NOT work on newer SoC µarch devices (Celeron N4100 or Pentium N5000 etc.), and certain devices like my Thinkpad X260 and P51 automatically set PL1 so xtucli doesn't work correctly. On some 2016+ devices, you'll need to disable SpeedShift in BIOS as this also automatically sets PLs
 
 1. AutoHotkey - installing AHK will let you run the script and compile to .exe if you want. You can edit it in any text editor - my preference is VSCode
 2. XTU CLI. The latest versions of XTU don't have xtucli.exe, and I use XTU version 6.4.1.25 [here](https://ln2.sync.com/dl/6d69901f0/35smam2h-ed7mw4sx-drh67vsv-3dj6s79q)
@@ -35,7 +34,7 @@ Edit the per-temperature power limits to your liking. The current PLs are for my
 
 You can set a hotkey to toggle the script on/off, such as `#z::suspend` (Win+Z), but make sure to put any hotkeys at the end of the script unless you know what you're doing. Adding keys to exit and reload it are also very useful - I put `~^!r::reload` in all scripts so that Ctrl+Alt+R reloads everything at once 
 
-I start this on a timer after running initial XTU settings including undervolts (not all devices support undervolting). The PC boots and it launches an Admin script from Task Scheduler and then sets my initial XTU config, waits 60 seconds, and then launches this. Using Task Scheduler avoids UAC prompts
+I start this on a timer after running initial XTU settings including undervolts (not all devices support undervolting). The PC boots and it launches an Admin .exe script from Task Scheduler and then sets my initial XTU config with high PLs, waits 45 seconds, and then launches this (as part of another script). Using Task Scheduler avoids UAC prompts, and everything that an Admin AHK script runs is as Admin
 
 **Limitations:**
 
