@@ -4,7 +4,7 @@ Hello,
 
 I wrote an AHK script which automatically sets power limits based on the CPU package temperature and am looking for feedback to improve it
 
-**Purpose:**
+**Info:**
 
 A power limit is the max power that the package (CPU+GPU) is allowed to pull. Higher power limits increase performance but affect power draw (battery life) and temperatures of nearby components like the battery and motherboard's power delivery system
 
