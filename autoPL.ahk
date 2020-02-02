@@ -38,8 +38,7 @@ gosub PL
 return
 
 PL:
-if (A_ComputerName = "BPOK"){
-    if ((abs(cput0 - cput) >= 5) && cput < 80)  ;if difference from old is < 5
+if ((abs(cput0 - cput) >= 5) && cput < 80)  ;if difference from old is < 5
     {
     if (cput >= 75 && cput < 80)  ;temp between 75 and 79
         {
@@ -100,9 +99,6 @@ else  ;if absolue value < 5
   global cput0 := (cput + 1)  ;increment by one to increase chance of next trigger
   sleep 1000
 }
-return
-}
-else
 return
 
 readtemp:  ;CPU-Z takes around 3 seconds to generate the report - this runs and reads after 5 secs
