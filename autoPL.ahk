@@ -38,7 +38,7 @@ gosub PL
 return
 
 PL:
-if ((abs(cput0 - cput) >= 5) && cput < 80)  ;if difference from old is < 5
+if ((abs(cput0 - cput) >= 5) && cput < 80)  ;if difference from old is > 5
     {
     if (cput >= 75 && cput < 80)  ;temp between 75 and 79
         {
