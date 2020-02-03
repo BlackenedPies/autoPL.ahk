@@ -8,6 +8,21 @@ SetTitleMatchMode 2
 #Persistent
 
 #Persistent
+
+;these automatically run when the script first starts and stick until overwritten
+;PL1 (7W)
+run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 48 -v 7",,hide
+;PL2 (11W)
+run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 47 -v 11",,hide
+;PL2 time window (20 seconds), default on most devices is 32 seconds
+run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 66 -v 20",,hide
+;core undervolt (-50 mV) - doesn't work on all devices and may be unstable
+run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 34 -v -50",,hide
+;iGPU undervolt (-50 mV) - doesn't work on all devices and may be unstable
+run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 100 -v -50",,hide
+;cache undervolt (-50 mV) - doesn't work on all devices and may be unstable
+run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 79 -v -50",,hide
+
 global cput0 := 50  ;initializing the value; not necessary
 
 SetTimer, readlog, 60000  ;30 second timer
