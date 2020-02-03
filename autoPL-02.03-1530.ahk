@@ -7,7 +7,7 @@ SetTitleMatchMode 2
 #InputLevel, 3
 #Persistent
 
-#Persistent
+;some comments may be outdated
 
 ;these automatically run when the script first starts and stick until overwritten
 ;PL1 (7W)
@@ -23,9 +23,9 @@ run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\
 ;cache undervolt (-50 mV) - doesn't work on all devices and may be unstable
 run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 79 -v -50",,hide
 
-global cput0 := 50  ;initializing the value; not necessary
+global cput0 := 50  ;initializing the value
 
-SetTimer, readlog, 60000  ;30 second timer
+SetTimer, readlog, 60000  ;60 second timer
 
 readlog:
 global linenum = 93 ;SET THIS FOR YOUR DEVICE
