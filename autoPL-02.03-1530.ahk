@@ -11,9 +11,9 @@ SetTitleMatchMode 2
 
 ;these automatically run when the script first starts and stick until overwritten
 ;PL1 (8W)
-run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 48 -v 7",,hide
+run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 48 -v 8",,hide
 ;PL2 (12W)
-run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 47 -v 11",,hide
+run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 47 -v 12",,hide
 ;PL2 time window (20 seconds), default on most devices is 32 seconds
 run %comspec% /k ""C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe" -t -id 66 -v 20",,hide
 ;core undervolt (-50 mV) - doesn't work on all devices and may be unstable
